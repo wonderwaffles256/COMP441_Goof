@@ -10,21 +10,52 @@ public class BallScript : MonoBehaviour
     Vector2 shootDirection;
     Rigidbody2D _rbody;
     public float speed;
+    private bool moving = false;
+    Vector2 objectPosition;
+    //private bool ballClicked = false;
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_rbody.velocity.magnitude == 0 & moving)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 objectPosition = transform.position;
-            Vector2 direction = mousePosition - objectPosition;
-            _rbody.AddForce(direction * speed, ForceMode2D.Impulse);
-            Debug.Log(direction.ToString());
+            moving = false;
+            //ballClicked = false;
+            Debug.Log("ball stopped");
         }
     }
+    private void OnMouseDown()
+    {
+        if (!moving)
+        { 
+            objectPosition = transform.position;
+            Debug.Log("Ball clicked");
+            //ballClicked = true;
+        }
+        else
+        {
+            Debug.Log("Ball is still moving!");
+        }
+    }
+    private void OnMouseUp()
+    {
+        if (!moving)
+        {
+            Debug.Log("Ball released");
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = mousePosition - objectPosition;
+            _rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
+            Debug.Log(direction.ToString() + " " + objectPosition.ToString() + " " + mousePosition.ToString());
+            moving = true;
+        }
+        else
+        {
+            Debug.Log("Ball is still moving!");
+        }
+    }
+
 }
