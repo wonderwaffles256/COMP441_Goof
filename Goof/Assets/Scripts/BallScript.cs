@@ -9,6 +9,7 @@ public class BallScript : MonoBehaviour
     // Start is called before the first frame update
     Vector2 shootDirection;
     Rigidbody2D _rbody;
+    SpriteRenderer _rend;
     public float speed;
     bool _moving = false;
     Vector2 _objectPosition;
@@ -16,6 +17,7 @@ public class BallScript : MonoBehaviour
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
+        _rend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class BallScript : MonoBehaviour
         if (_rbody.velocity.magnitude == 0 & _moving)
         {
             _moving = false;
-            //ballClicked = false;
+            _rend.color = Color.white;
             Debug.Log("ball stopped");
         }
     }
@@ -34,7 +36,6 @@ public class BallScript : MonoBehaviour
         { 
             _objectPosition = transform.position;
             Debug.Log("Ball clicked");
-            //ballClicked = true;
         }
         else
         {
@@ -51,6 +52,7 @@ public class BallScript : MonoBehaviour
             _rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
             Debug.Log(direction.ToString() + " " + _objectPosition.ToString() + " " + mousePosition.ToString());
             _moving = true;
+            _rend.color = Color.grey;
         }
         else
         {
