@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,5 +19,10 @@ public class CourseScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void destroySelf()
+    {
+        Destroy(gameObject);
     }
 }

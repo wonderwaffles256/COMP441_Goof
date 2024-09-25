@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HolesScript : MonoBehaviour
 {
-    MainSceneManager _manager;
+    ManagerScript _manager;
     // Start is called before the first frame update
     void Start()
     {
-        _manager = FindAnyObjectByType<MainSceneManager>();
+        _manager = FindAnyObjectByType<ManagerScript>();
     }
 
     // Update is called once per frame
