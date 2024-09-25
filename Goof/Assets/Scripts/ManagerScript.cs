@@ -6,26 +6,26 @@ using UnityEngine.InputSystem;
 
 public class MainSceneManager : MonoBehaviour
 {
-    public TMP_Text courseNumber;
-    public TMP_Text strokeCount;
-    public TMP_Text winMessage;
+    public TMP_Text courseNumberText;
+    public TMP_Text strokeCountText;
+    public TMP_Text winMessageText;
     public string[] winMessages;
-    public int par;
+    public int courseNumber;
 
-    int _strokes;
-    bool _inHole;
+    int _strokeCount;
+    bool _hasWon;
 
     // Start is called before the first frame update
     void Start()
     {
-        _strokes = 0;
-        _inHole = false;
+        _strokeCount = 0;
+        _hasWon = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_inHole)
+        if (_hasWon)
         {
 
         }
@@ -33,8 +33,14 @@ public class MainSceneManager : MonoBehaviour
 
     public void addStroke()
     {
-        _strokes++;
-        strokeCount.text = _strokes.ToString();
+        _strokeCount++;
+        strokeCountText.text = _strokeCount.ToString();
+    }
+
+    public void OnHoleDetection()
+    {
+        _hasWon = true;
+        winMessageText.text = winMessages[(_strokeCount > 0 && _strokeCount <= winMessages.Length) ? _strokeCount - 1 : 0];
     }
 
 }
