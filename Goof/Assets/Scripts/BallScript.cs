@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,14 +11,21 @@ public class BallScript : MonoBehaviour
     Vector2 shootDirection;
     Rigidbody2D _rbody;
     SpriteRenderer _rend;
+    GameObject arrow;
+    SpriteRenderer arrowSprite;
     public float speed;
     bool _moving = false;
     Vector2 _objectPosition;
+    Vector2 mousePosition;
+    Vector2 direction;
     //private bool ballClicked = false;
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
         _rend = GetComponent<SpriteRenderer>();
+        arrow = GameObject.FindGameObjectWithTag("Arrow");
+        arrowSprite = arrow.GetComponent<SpriteRenderer>();
+        arrowSprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -35,11 +43,24 @@ public class BallScript : MonoBehaviour
         if (!_moving)
         { 
             _objectPosition = transform.position;
+            arrowSprite.enabled = true;
+            arrowSprite.transform.position = _objectPosition;
             Debug.Log("Ball clicked");
         }
         else
         {
             Debug.Log("Ball is still moving!");
+        }
+    }
+    private void OnMouseDrag()
+    {
+        if (!_moving)
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            direction = mousePosition - _objectPosition;
+            float distance = Vector2.Distance(_objectPosition, mousePosition);
+            float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+            arrowSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
     private void OnMouseUp()
@@ -48,9 +69,8 @@ public class BallScript : MonoBehaviour
         {
             Debug.Log("Ball released");
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = mousePosition - _objectPosition;
             _rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
-            Debug.Log(direction.ToString() + " " + _objectPosition.ToString() + " " + mousePosition.ToString());
+            arrowSprite.enabled = false;
             _moving = true;
             _rend.color = Color.grey;
         }
