@@ -10,6 +10,7 @@ public class ManagerScript : MonoBehaviour
     public TMP_Text strokeCountText;
     public TMP_Text winMessageText;
     public TMP_Text parText;
+    public TMP_Text continueText;
     public GameObject[] coursePrefabs;
     public string[] winMessages;
     public int courseNumber;
@@ -17,54 +18,72 @@ public class ManagerScript : MonoBehaviour
     GameObject _currCourse;
     CourseScript _currCourseScript;
     int _strokeCount;
-    bool _hasWon;
+    bool _hitHole;
     string _winMessage;
 
     // Start is called before the first frame update
     void Start()
     {
-        _currCourse = coursePrefabs[(courseNumber >=0) ? courseNumber : 0];
-        Instantiate(_currCourse, new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
+        _currCourse = Instantiate(coursePrefabs[(courseNumber >= 0) ? courseNumber : 0], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
         _currCourseScript = _currCourse.GetComponent<CourseScript>();
+        courseNumberText.text = courseNumber.ToString();
+        parText.text = "Par: " + _currCourseScript.par.ToString();
+        winMessageText.enabled = false;
+        continueText.enabled = false;
         _strokeCount = 0;
-        _hasWon = false;
+        _hitHole = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_hasWon && Input.GetKey(KeyCode.Space))
+        if (_hitHole)
         {
-            // Arrest controls
-            nextCourse();
+            // TODO: Arrest controls
+            winMessageText.enabled = true;
+            continueText.enabled = true;
         }
-        courseNumberText.text = courseNumber.ToString();
-        parText.text = _currCourseScript.par.ToString();
+        if (_hitHole && Input.GetKey(KeyCode.Space))
+        {
+            nextCourse();
+            _strokeCount = 0;
+            winMessageText.enabled = false;
+            continueText.enabled = false;
+            _hitHole = false;
+        }
+        strokeCountText.text = "Stroke: " + _strokeCount.ToString();
     }
 
     public void addStroke()
     {
-        _strokeCount++;
-        strokeCountText.text = _strokeCount.ToString();
+        _strokeCount++;  
     }
 
     void nextCourse()
     {
-        
-        _currCourseScript.destroySelf();
-        courseNumber = (courseNumber < 0 || courseNumber > coursePrefabs.Length) ? 1 : courseNumber++;
-        _currCourse = coursePrefabs[courseNumber - 1];
-        Instantiate(_currCourse, new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
+        // Remove current course from scene
+        _currCourseScript.destroyCourse();
+        // Increment the course number
+        courseNumber = (courseNumber <= 0 || courseNumber > coursePrefabs.Length) ? 1 : courseNumber + 1;
+        // Set current course to next course
+        Debug.Log(coursePrefabs.Length.ToString());
+        _currCourse = Instantiate(coursePrefabs[courseNumber - 1], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
+        // Get next course's script
+        _currCourseScript = _currCourse.GetComponent<CourseScript>(); ;
+        // Set course-specific UI text
+        courseNumberText.text = courseNumber.ToString();
+        parText.text = "Par: " + _currCourseScript.par.ToString();
     }
 
     public void OnHoleDetection()
     {
-        _hasWon = true;
+        _hitHole = true;
         int par = _currCourseScript.par;
         // # strokes above or below par. Assumes below par
         int belowPar = _strokeCount - par;
         // Calculates index of win message array
         int index = par + belowPar - 1;
+        // Decides win message based on index
         if (index >= 0 && index < winMessages.Length)
         {
             _winMessage = winMessages[index];
@@ -72,6 +91,10 @@ public class ManagerScript : MonoBehaviour
         else if (index >= winMessages.Length)
         {
             _winMessage = "+" + par.ToString() + " over Par";
+        }
+        else
+        {
+            _winMessage = "ERROR";
         }
         winMessageText.text = _winMessage;
     }

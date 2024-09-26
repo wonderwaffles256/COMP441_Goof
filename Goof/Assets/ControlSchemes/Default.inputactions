@@ -1,15 +1,15 @@
 {
-    "name": "DefaultControls",
+    "name": "Default",
     "maps": [
         {
-            "name": "Mouse",
-            "id": "f4da5dee-8aff-4eff-8cf9-172808e2443d",
+            "name": "Scroll Wheel",
+            "id": "6344894e-e803-4c7f-9df6-06e8e6a9880b",
             "actions": [
                 {
-                    "name": "Swing",
+                    "name": "Scroll",
                     "type": "Value",
-                    "id": "3d02e6b1-62cf-4905-898c-7c5b367da3d9",
-                    "expectedControlType": "Digital",
+                    "id": "42a5d421-0309-42f2-a4e2-1916c39e6142",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -18,12 +18,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c4a8cf41-37a9-40e3-8c9a-0ebea3ae9eab",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=2)",
-                    "processors": "NormalizeVector2",
+                    "id": "298d6eb0-88a8-49fd-842a-9532d2f1dfc7",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
                     "groups": "Mouse",
-                    "action": "Swing",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

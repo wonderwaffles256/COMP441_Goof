@@ -21,7 +21,7 @@ public class CourseScript : MonoBehaviour
         
     }
 
-    public void destroySelf()
+    public void destroyCourse()
     {
         Destroy(gameObject);
     }
