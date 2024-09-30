@@ -17,19 +17,34 @@ public class ManagerScript : MonoBehaviour
 
     GameObject _currCourse;
     CourseScript _currCourseScript;
+    BallScript _ballScript;
     int _strokeCount;
     bool _hitHole;
     string _winMessage;
 
+    private void Awake()
+    {
+        // Instantiate 1st course based on course number
+        _currCourse = Instantiate(coursePrefabs[(courseNumber >= 0) ? courseNumber : 0], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
+        // Get script of 1st loaded course
+        _currCourseScript = _currCourse.GetComponent<CourseScript>();
+        // Get the ball's script
+        _ballScript = FindAnyObjectByType<BallScript>();
+        // Pass 1st course to BallScript for control
+        _ballScript.course = _currCourse;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        _currCourse = Instantiate(coursePrefabs[(courseNumber >= 0) ? courseNumber : 0], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
-        _currCourseScript = _currCourse.GetComponent<CourseScript>();
+        // Set course number text to course number
         courseNumberText.text = courseNumber.ToString();
+        // Set par to course's par value
         parText.text = "Par: " + _currCourseScript.par.ToString();
+        // Disable irrelevant UI
         winMessageText.enabled = false;
         continueText.enabled = false;
+        // Setup relevant values
         _strokeCount = 0;
         _hitHole = false;
     }
@@ -69,7 +84,9 @@ public class ManagerScript : MonoBehaviour
         Debug.Log(coursePrefabs.Length.ToString());
         _currCourse = Instantiate(coursePrefabs[courseNumber - 1], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
         // Get next course's script
-        _currCourseScript = _currCourse.GetComponent<CourseScript>(); ;
+        _currCourseScript = _currCourse.GetComponent<CourseScript>();
+        // Pass new course to BallScript
+        _ballScript.course = _currCourse;
         // Set course-specific UI text
         courseNumberText.text = courseNumber.ToString();
         parText.text = "Par: " + _currCourseScript.par.ToString();

@@ -22,9 +22,9 @@ public class CourseScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (_rbody.velocity.magnitude == 0 & ball.GetComponent<RealBallScript>()._moving)
+        if (_rbody.velocity.magnitude == 0 & ball.GetComponent<BallScript>()._moving)
         {
-            ball.GetComponent<RealBallScript>()._moving = false;
+            ball.GetComponent<BallScript>()._moving = false;
             ball.GetComponent<SpriteRenderer>().color = Color.white;
             Debug.Log("ball stopped");
         }

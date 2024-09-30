@@ -7,7 +7,7 @@ public class BallScript : MonoBehaviour
     Vector2 shootDirection;
     SpriteRenderer _rend;
     GameObject arrow;
-    GameObject course;
+    public GameObject course;
     SpriteRenderer arrowSprite;
     public bool _moving = false;
     Vector2 _objectPosition;
@@ -18,7 +18,7 @@ public class BallScript : MonoBehaviour
     {
         _rend = GetComponent<SpriteRenderer>();
         arrow = GameObject.FindGameObjectWithTag("Arrow");
-        course = GameObject.FindGameObjectWithTag("Course");
+        //course = GameObject.FindGameObjectWithTag("Course");
         arrowSprite = arrow.GetComponent<SpriteRenderer>();
         arrowSprite.enabled = false;
     }
