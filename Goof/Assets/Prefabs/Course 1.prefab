@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: -2547824281397322220}
   m_Layer: 0
   m_Name: Course 1
-  m_TagString: Untagged
+  m_TagString: Course
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   par: 2
+  speed: 0
 --- !u!1 &8575181489398817443
 GameObject:
   m_ObjectHideFlags: 0

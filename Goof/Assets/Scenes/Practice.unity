@@ -944,6 +944,7 @@ MonoBehaviour:
   strokeCountText: {fileID: 264245440}
   winMessageText: {fileID: 805412844}
   parText: {fileID: 207590241}
+  continueText: {fileID: 805412844}
   coursePrefabs:
   - {fileID: 8449458985260227268, guid: 10f8dbbedbc2e4949af8e7d5486b7fe6, type: 3}
   - {fileID: 4687063288451161880, guid: 4a23376404c01274a8e5d2b7db8222d7, type: 3}
