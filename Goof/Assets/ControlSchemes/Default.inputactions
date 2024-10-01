@@ -6,10 +6,10 @@
             "id": "6344894e-e803-4c7f-9df6-06e8e6a9880b",
             "actions": [
                 {
-                    "name": "Scroll",
+                    "name": "Zoom",
                     "type": "Value",
                     "id": "42a5d421-0309-42f2-a4e2-1916c39e6142",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -17,15 +17,37 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "298d6eb0-88a8-49fd-842a-9532d2f1dfc7",
-                    "path": "<Mouse>/scroll",
+                    "name": "Mouse Wheel",
+                    "id": "de67dd9c-37e2-43bd-9c24-95fe25666799",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
-                    "action": "Scroll",
-                    "isComposite": false,
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "7ea92444-0c4a-4137-b12a-216ddf6c0a1e",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "Normalize(max=1)",
+                    "groups": "Mouse",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "cd658ef1-2aac-43b7-8c1d-988748d310ac",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "Normalize(max=1)",
+                    "groups": "Mouse",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

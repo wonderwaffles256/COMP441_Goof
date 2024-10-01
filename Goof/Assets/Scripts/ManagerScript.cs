@@ -24,8 +24,9 @@ public class ManagerScript : MonoBehaviour
 
     private void Awake()
     {
+        courseNumber = (courseNumber > 0 && courseNumber <= coursePrefabs.Length) ? courseNumber : 1;
         // Instantiate 1st course based on course number
-        _currCourse = Instantiate(coursePrefabs[(courseNumber >= 0) ? courseNumber : 0], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
+        _currCourse = Instantiate(coursePrefabs[courseNumber - 1], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
         // Get script of 1st loaded course
         _currCourseScript = _currCourse.GetComponent<CourseScript>();
         // Get the ball's script
@@ -76,13 +77,15 @@ public class ManagerScript : MonoBehaviour
 
     void nextCourse()
     {
+        // Increment the course number
+        courseNumber = (courseNumber > 0 && courseNumber <= coursePrefabs.Length) ? courseNumber + 1 : 1;
+        // Grab next prefab before it's script is destroyed
+        GameObject tempPrefab = coursePrefabs[courseNumber - 1];
         // Remove current course from scene
         _currCourseScript.destroyCourse();
-        // Increment the course number
-        courseNumber = (courseNumber <= 0 || courseNumber > coursePrefabs.Length) ? 1 : courseNumber + 1;
         // Set current course to next course
         Debug.Log(coursePrefabs.Length.ToString());
-        _currCourse = Instantiate(coursePrefabs[courseNumber - 1], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
+        _currCourse = Instantiate(tempPrefab, new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
         // Get next course's script
         _currCourseScript = _currCourse.GetComponent<CourseScript>();
         // Pass new course to BallScript
@@ -97,17 +100,23 @@ public class ManagerScript : MonoBehaviour
         _hitHole = true;
         int par = _currCourseScript.par;
         // # strokes above or below par. Assumes below par
-        int belowPar = _strokeCount - par;
+        int abovePar = _strokeCount - par;
+        // Find # of elements par is away from PAR text in the array (PAR is 5th element)
+        int relIndex = 5 - par;
         // Calculates index of win message array
-        int index = par + belowPar - 1;
+        int index = relIndex + par + abovePar - 1;
         // Decides win message based on index
-        if (index >= 0 && index < winMessages.Length)
+        if (_strokeCount == 1)
+        {
+            _winMessage = winMessages[0];
+        }
+        else if (index >= 0 && index < winMessages.Length)
         {
             _winMessage = winMessages[index];
         }
         else if (index >= winMessages.Length)
         {
-            _winMessage = "+" + par.ToString() + " over Par";
+            _winMessage = abovePar.ToString() + " over Par";
         }
         else
         {

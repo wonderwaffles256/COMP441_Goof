@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Transform))]
+[RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour
 {
-    Transform _trans;
-    Vector2 _scrollVector;
+    Camera _cam;
     // Start is called before the first frame update
     void Start()
     {
-        _trans = GetComponent<Transform>();
+        _cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -20,9 +19,25 @@ public class CameraScript : MonoBehaviour
         
     }
 
-    void OnScroll(InputValue value)
+    public void OnZoom(InputValue value)
     {
-        _scrollVector = value.Get<Vector2>();
-        Debug.Log($"{_scrollVector}");
+        float direction = value.Get<float>();
+        if (direction > 0)
+        {
+            Debug.Log($"Zoomed in");
+            if (_cam.orthographicSize > 1)
+            {
+                _cam.orthographicSize--;
+            }
+        }
+        if (direction < 0)
+        {
+            Debug.Log($"Zoomed out");
+            if (_cam.orthographicSize < 10)
+            {
+                _cam.orthographicSize++;
+            }
+        }
+
     }
 }

@@ -5,22 +5,25 @@ using UnityEngine;
 public class BallScript : MonoBehaviour
 {
     public GameObject course;
-    GameObject arrow;
-    SpriteRenderer _rend;
-    SpriteRenderer arrowSprite;
     public bool _moving = false;
-    Vector2 shootDirection;
+
+    ManagerScript _manager;
+    GameObject _arrow;
+    SpriteRenderer _rend;
+    SpriteRenderer _arrowSprite;
+    Vector2 _shootDirection;
     Vector2 _objectPosition;
-    Vector2 mousePosition;
-    Vector2 direction;
+    Vector2 _mousePosition;
+    Vector2 _direction;
     // Start is called before the first frame update
     void Start()
     {
+        _manager = FindAnyObjectByType<ManagerScript>();
         _rend = GetComponent<SpriteRenderer>();
         //set up the arrow that shows the direction you are hitting
-        arrow = GameObject.FindGameObjectWithTag("Arrow");
-        arrowSprite = arrow.GetComponent<SpriteRenderer>();
-        arrowSprite.enabled = false;
+        _arrow = GameObject.FindGameObjectWithTag("Arrow");
+        _arrowSprite = _arrow.GetComponent<SpriteRenderer>();
+        _arrowSprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -34,8 +37,8 @@ public class BallScript : MonoBehaviour
         {
             //record the balls position and make the arrow appear when ball is clicked
             _objectPosition = transform.position;
-            arrowSprite.enabled = true;
-            arrowSprite.transform.position = _objectPosition;
+            _arrowSprite.enabled = true;
+            _arrowSprite.transform.position = _objectPosition;
             Debug.Log("Ball clicked");
         }
         else
@@ -48,11 +51,11 @@ public class BallScript : MonoBehaviour
         if (!_moving)
         {
             //find the mouse position and the direction from the ball to the mouse
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            direction = mousePosition - _objectPosition;
+            _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _direction = _mousePosition - _objectPosition;
             //find the angle from the ball to the mouse and make the arrow show that direction
-            float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-            arrowSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
+            float angle = Mathf.Atan2(-_direction.y, -_direction.x) * Mathf.Rad2Deg;
+            _arrowSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
     private void OnMouseUp()
@@ -60,10 +63,11 @@ public class BallScript : MonoBehaviour
         if (!_moving)
         {
             Debug.Log("Ball released");
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _manager.addStroke();
+            _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //call on the method in managerscript to hit the course
-            course.GetComponent<CourseScript>().hitCourse(direction);
-            arrowSprite.enabled = false;//turn off the arrow
+            course.GetComponent<CourseScript>().hitCourse(_direction);
+            _arrowSprite.enabled = false;//turn off the arrow
             _moving = true;//course is now moving
             _rend.color = Color.grey;//change the balls color
         }
