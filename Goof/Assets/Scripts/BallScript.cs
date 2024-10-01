@@ -11,10 +11,11 @@ public class BallScript : MonoBehaviour
     GameObject _arrow;
     SpriteRenderer _rend;
     SpriteRenderer _arrowSprite;
-    Vector2 _shootDirection;
     Vector2 _objectPosition;
     Vector2 _mousePosition;
     Vector2 _direction;
+    bool _isInHole;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +30,21 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _isInHole = _manager.BallInHole();
+        if (_isInHole)
+        {
+            _rend.enabled = false;
+        }
+        else
+        {
+            _rend.enabled = true;
+        }
     }
-    private void OnMouseDown()
+
+    void OnMouseDown()
     {
         //The course isn't moving
-        if (!_moving)
+        if (!_moving && !_isInHole)
         {
             //record the balls position and make the arrow appear when ball is clicked
             _objectPosition = transform.position;
@@ -43,10 +54,18 @@ public class BallScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ball is still moving!");
+            if (_isInHole)
+            {
+                Debug.Log("Ball is in Hole");
+            }
+            else
+            {
+                Debug.Log("Ball is still moving!");
+            }
+
         }
     }
-    private void OnMouseDrag()
+    void OnMouseDrag()
     {
         if (!_moving)
         {
@@ -58,9 +77,9 @@ public class BallScript : MonoBehaviour
             _arrowSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
-    private void OnMouseUp()
+    void OnMouseUp()
     {
-        if (!_moving)
+        if (!_moving && !_isInHole)
         {
             Debug.Log("Ball released");
             _manager.addStroke();

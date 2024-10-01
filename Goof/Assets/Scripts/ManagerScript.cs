@@ -24,6 +24,7 @@ public class ManagerScript : MonoBehaviour
 
     private void Awake()
     {
+        // Make sure course number is within bounds of prefab array length
         courseNumber = (courseNumber > 0 && courseNumber <= coursePrefabs.Length) ? courseNumber : 1;
         // Instantiate 1st course based on course number
         _currCourse = Instantiate(coursePrefabs[courseNumber - 1], new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
@@ -35,7 +36,6 @@ public class ManagerScript : MonoBehaviour
         _ballScript.course = _currCourse;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         // Set course number text to course number
@@ -56,8 +56,7 @@ public class ManagerScript : MonoBehaviour
         if (_hitHole)
         {
             // TODO: Arrest controls
-            winMessageText.enabled = true;
-            continueText.enabled = true;
+            
         }
         if (_hitHole && Input.GetKey(KeyCode.Space))
         {
@@ -77,8 +76,8 @@ public class ManagerScript : MonoBehaviour
 
     void nextCourse()
     {
-        // Increment the course number
-        courseNumber = (courseNumber > 0 && courseNumber <= coursePrefabs.Length) ? courseNumber + 1 : 1;
+        // Increment the course number, wrapping back to course 1
+        courseNumber = (courseNumber > 0 && courseNumber < coursePrefabs.Length) ? courseNumber + 1 : 1;
         // Grab next prefab before it's script is destroyed
         GameObject tempPrefab = coursePrefabs[courseNumber - 1];
         // Remove current course from scene
@@ -98,6 +97,18 @@ public class ManagerScript : MonoBehaviour
     public void OnHoleDetection()
     {
         _hitHole = true;
+        DisplayScore();
+        winMessageText.enabled = true;
+        continueText.enabled = true;
+    }
+
+    public bool BallInHole()
+    {
+        return _hitHole;
+    }
+
+    void DisplayScore()
+    {
         int par = _currCourseScript.par;
         // # strokes above or below par. Assumes below par
         int abovePar = _strokeCount - par;
