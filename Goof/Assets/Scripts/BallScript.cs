@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BallScript : MonoBehaviour
 {
-    Vector2 shootDirection;
-    SpriteRenderer _rend;
-    GameObject arrow;
     public GameObject course;
+    GameObject arrow;
+    SpriteRenderer _rend;
     SpriteRenderer arrowSprite;
     public bool _moving = false;
+    Vector2 shootDirection;
     Vector2 _objectPosition;
     Vector2 mousePosition;
     Vector2 direction;
@@ -17,8 +17,8 @@ public class BallScript : MonoBehaviour
     void Start()
     {
         _rend = GetComponent<SpriteRenderer>();
+        //set up the arrow that shows the direction you are hitting
         arrow = GameObject.FindGameObjectWithTag("Arrow");
-        //course = GameObject.FindGameObjectWithTag("Course");
         arrowSprite = arrow.GetComponent<SpriteRenderer>();
         arrowSprite.enabled = false;
     }
@@ -26,12 +26,13 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     private void OnMouseDown()
     {
+        //The course isn't moving
         if (!_moving)
         {
+            //record the balls position and make the arrow appear when ball is clicked
             _objectPosition = transform.position;
             arrowSprite.enabled = true;
             arrowSprite.transform.position = _objectPosition;
@@ -46,9 +47,10 @@ public class BallScript : MonoBehaviour
     {
         if (!_moving)
         {
+            //find the mouse position and the direction from the ball to the mouse
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = mousePosition - _objectPosition;
-            float distance = Vector2.Distance(_objectPosition, mousePosition);
+            //find the angle from the ball to the mouse and make the arrow show that direction
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
             arrowSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
@@ -58,12 +60,12 @@ public class BallScript : MonoBehaviour
         if (!_moving)
         {
             Debug.Log("Ball released");
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //_rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //call on the method in managerscript to hit the course
             course.GetComponent<CourseScript>().hitCourse(direction);
-            arrowSprite.enabled = false;
-            _moving = true;
-            _rend.color = Color.grey;
+            arrowSprite.enabled = false;//turn off the arrow
+            _moving = true;//course is now moving
+            _rend.color = Color.grey;//change the balls color
         }
         else
         {

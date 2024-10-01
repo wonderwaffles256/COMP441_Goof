@@ -22,6 +22,7 @@ public class CourseScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //check if the course is moving and if it has stopped
         if (_rbody.velocity.magnitude == 0 & ball.GetComponent<BallScript>()._moving)
         {
             ball.GetComponent<BallScript>()._moving = false;
@@ -34,6 +35,7 @@ public class CourseScript : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    //method to hit the course
     public void hitCourse(Vector2 direction)
     {
         _rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
