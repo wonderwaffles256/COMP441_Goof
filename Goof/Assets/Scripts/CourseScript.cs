@@ -9,6 +9,10 @@ public class CourseScript : MonoBehaviour
 {
     public int par;
     public float speed;
+    public AudioClip hitCoursesound;
+    AudioSource AudioSource;
+    float maxspeed = 40f;
+    //public Vector2 testspeed;
     Rigidbody2D _rbody;
     GameObject ball;
 
@@ -17,6 +21,7 @@ public class CourseScript : MonoBehaviour
     {
         _rbody = GetComponent<Rigidbody2D>();
         ball = GameObject.FindGameObjectWithTag("Ball");
+        AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +34,11 @@ public class CourseScript : MonoBehaviour
             ball.GetComponent<SpriteRenderer>().color = Color.white;
             Debug.Log("ball stopped");
         }
+        if(_rbody.velocity.magnitude >= maxspeed)
+        {
+            Debug.Log(_rbody.velocity.magnitude);
+            _rbody.velocity = Vector3.ClampMagnitude(_rbody.velocity, maxspeed);
+        }
     }
 
     public void destroyCourse()
@@ -38,6 +48,15 @@ public class CourseScript : MonoBehaviour
     //method to hit the course
     public void hitCourse(Vector2 direction)
     {
-        _rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
+        AudioSource.PlayOneShot(hitCoursesound);
+        if (speed * direction.magnitude > maxspeed)
+        {
+            _rbody.AddForce(direction.normalized * -maxspeed, ForceMode2D.Impulse);
+        }
+        else
+        {
+            _rbody.AddForce(direction * -speed, ForceMode2D.Impulse);
+        }
+        //_rbody.AddForce(testspeed, ForceMode2D.Impulse);
     }
 }
