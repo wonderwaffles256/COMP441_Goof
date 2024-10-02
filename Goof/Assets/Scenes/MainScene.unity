@@ -958,8 +958,7 @@ MonoBehaviour:
   parText: {fileID: 207590241}
   continueText: {fileID: 1449485392}
   coursePrefabs:
-  - {fileID: 8449458985260227268, guid: 10f8dbbedbc2e4949af8e7d5486b7fe6, type: 3}
-  - {fileID: 4687063288451161880, guid: 4a23376404c01274a8e5d2b7db8222d7, type: 3}
+  - {fileID: 6936363458266501634, guid: c7720e8e55583d84db21d984377f81ce, type: 3}
   winMessages:
   - Hole In One!!!
   - Albatross
