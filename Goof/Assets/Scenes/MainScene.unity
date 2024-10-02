@@ -958,7 +958,10 @@ MonoBehaviour:
   parText: {fileID: 207590241}
   continueText: {fileID: 1449485392}
   coursePrefabs:
+  - {fileID: 8449458985260227268, guid: 10f8dbbedbc2e4949af8e7d5486b7fe6, type: 3}
+  - {fileID: 4687063288451161880, guid: 4a23376404c01274a8e5d2b7db8222d7, type: 3}
   - {fileID: 6936363458266501634, guid: c7720e8e55583d84db21d984377f81ce, type: 3}
+  - {fileID: 1097637023488730712, guid: 52236f77ea3c7fb459f514506d36f3cb, type: 3}
   winMessages:
   - Hole In One!!!
   - Albatross
@@ -1260,6 +1263,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 450487608185370030, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: hitCourseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 58e3c1c4c82440f44b635418198738e6, type: 3}
     - target: {fileID: 2792083504810991242, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_Name
       value: Ball
@@ -1316,12 +1323,20 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7877907012732957949, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877907012732957949, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2792083504810991242, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 833489349}
   m_SourcePrefab: {fileID: 100100000, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
 --- !u!1660057539 &9223372036854775807

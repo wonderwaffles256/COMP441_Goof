@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class BallScript : MonoBehaviour
 {
     public GameObject course;
     public bool _moving = false;
-
+    public AudioClip hitCourseSound;
+    
+    AudioSource _audioSource;
     ManagerScript _manager;
     GameObject _arrow;
     SpriteRenderer _rend;
@@ -21,6 +24,7 @@ public class BallScript : MonoBehaviour
     {
         _manager = FindAnyObjectByType<ManagerScript>();
         _rend = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         //set up the arrow that shows the direction you are hitting
         _arrow = GameObject.FindGameObjectWithTag("Arrow");
         _arrowSprite = _arrow.GetComponent<SpriteRenderer>();
@@ -82,6 +86,7 @@ public class BallScript : MonoBehaviour
         if (!_moving && !_isInHole)
         {
             Debug.Log("Ball released");
+            _audioSource.PlayOneShot(hitCourseSound);
             _manager.addStroke();
             _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //call on the method in managerscript to hit the course

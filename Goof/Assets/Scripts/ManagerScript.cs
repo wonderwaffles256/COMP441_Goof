@@ -39,7 +39,7 @@ public class ManagerScript : MonoBehaviour
     void Start()
     {
         // Set course number text to course number
-        courseNumberText.text = courseNumber.ToString();
+        courseNumberText.text = $"Course {courseNumber}";
         // Set par to course's par value
         parText.text = "Par: " + _currCourseScript.par.ToString();
         // Disable irrelevant UI
@@ -90,7 +90,7 @@ public class ManagerScript : MonoBehaviour
         // Pass new course to BallScript
         _ballScript.course = _currCourse;
         // Set course-specific UI text
-        courseNumberText.text = courseNumber.ToString();
+        courseNumberText.text = $"Course {courseNumber}";
         parText.text = "Par: " + _currCourseScript.par.ToString();
     }
 

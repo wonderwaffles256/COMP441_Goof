@@ -9,8 +9,7 @@ public class CourseScript : MonoBehaviour
 {
     public int par;
     public float speed;
-    public AudioClip hitCoursesound;
-    AudioSource AudioSource;
+
     float maxspeed = 40f;
     //public Vector2 testspeed;
     Rigidbody2D _rbody;
@@ -21,7 +20,6 @@ public class CourseScript : MonoBehaviour
     {
         _rbody = GetComponent<Rigidbody2D>();
         ball = GameObject.FindGameObjectWithTag("Ball");
-        AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,7 +46,6 @@ public class CourseScript : MonoBehaviour
     //method to hit the course
     public void hitCourse(Vector2 direction)
     {
-        AudioSource.PlayOneShot(hitCoursesound);
         if (speed * direction.magnitude > maxspeed)
         {
             _rbody.AddForce(direction.normalized * -maxspeed, ForceMode2D.Impulse);
