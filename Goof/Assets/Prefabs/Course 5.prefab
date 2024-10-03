@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.27206644
       objectReference: {fileID: 0}
+    - target: {fileID: 6433294401192231165, guid: fc9494c23ce712b469570097a8c39c5a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6712548815302922167, guid: fc9494c23ce712b469570097a8c39c5a, type: 3}
       propertyPath: m_Name
       value: Hole
@@ -220,7 +224,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5434006991234437770}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
