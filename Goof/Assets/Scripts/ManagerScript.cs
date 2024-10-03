@@ -77,9 +77,12 @@ public class ManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             _strokeCount = 0;
-            _currCourse.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            _currCourse.GetComponent<Rigidbody2D>().transform.position = Vector3.zero;
-            _currCourse.GetComponent<Rigidbody2D>().transform.rotation = Quaternion.identity;
+            Rigidbody2D _currBody = _currCourse.GetComponent<Rigidbody2D>();
+            _currBody.velocity = Vector3.zero;
+            _currBody.transform.position = Vector3.zero;
+            _currBody.transform.rotation = Quaternion.identity;
+            _currBody.drag = 1;
+            _currBody.angularDrag = 1;
         }
     }
 
@@ -149,5 +152,8 @@ public class ManagerScript : MonoBehaviour
         }
         winMessageText.text = _winMessage;
     }
-
+    public Rigidbody2D getCurrentCourseRbody()
+    {
+        return _currCourse.GetComponent<Rigidbody2D>();
+    }
 }

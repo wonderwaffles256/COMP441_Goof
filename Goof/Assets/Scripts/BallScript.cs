@@ -100,4 +100,36 @@ public class BallScript : MonoBehaviour
             Debug.Log("Ball is still moving!");
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Water")
+        {
+            Debug.Log("The Ball Sunk");
+            Rigidbody2D _currRbody = _manager.getCurrentCourseRbody();
+            _currRbody.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            _currRbody.GetComponent<Rigidbody2D>().transform.position = Vector3.zero;
+            _currRbody.GetComponent<Rigidbody2D>().transform.rotation = Quaternion.identity;
+        }
+        if (collision.tag == "Grass")
+        {
+            Debug.Log("The Ball is in the fields.");
+            Rigidbody2D _currRbody = _manager.getCurrentCourseRbody();
+            _currRbody.drag = 2;
+            _currRbody.angularDrag = 2;
+
+        }
+        Debug.Log("Detected Trigger");
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Grass")
+        {
+            Debug.Log("The Ball has left the fields.");
+            Rigidbody2D _currRbody = _manager.getCurrentCourseRbody();
+            _currRbody.drag = 1;
+            _currRbody.angularDrag = 1;
+
+        }
+    }
 }
