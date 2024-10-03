@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 1742129777351597850}
   m_Layer: 0
   m_Name: Course 3
-  m_TagString: Untagged
+  m_TagString: Course
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   par: 2
-  speed: 5
+  speed: 4
 --- !u!1001 &154937743986880747
 PrefabInstance:
   m_ObjectHideFlags: 0
