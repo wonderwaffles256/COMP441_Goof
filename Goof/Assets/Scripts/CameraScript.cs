@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour
 {
+    public float maxZoom;
     Camera _cam;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class CameraScript : MonoBehaviour
         if (direction < 0)
         {
             Debug.Log($"Zoomed out");
-            if (_cam.orthographicSize < 10)
+            if (_cam.orthographicSize < maxZoom)
             {
                 _cam.orthographicSize++;
             }

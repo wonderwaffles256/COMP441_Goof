@@ -109,6 +109,7 @@ public class BallScript : MonoBehaviour
             _currRbody.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             _currRbody.GetComponent<Rigidbody2D>().transform.position = Vector3.zero;
             _currRbody.GetComponent<Rigidbody2D>().transform.rotation = Quaternion.identity;
+            _manager.addStroke();
         }
         if (collision.tag == "Grass")
         {

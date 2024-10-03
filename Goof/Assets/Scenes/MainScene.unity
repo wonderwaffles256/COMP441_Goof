@@ -564,6 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591badb88c64c674fb55b3bd8e6adc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxZoom: 15
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,7 +959,7 @@ MonoBehaviour:
   parText: {fileID: 207590241}
   continueText: {fileID: 1449485392}
   coursePrefabs:
-  - {fileID: 8183006589032628288, guid: e330926129cffae49b6915ea135644ea, type: 3}
+  - {fileID: 6721635636588554533, guid: dbef62ed330e6bd40a6055100afabe08, type: 3}
   - {fileID: 4687063288451161880, guid: 4a23376404c01274a8e5d2b7db8222d7, type: 3}
   - {fileID: 6936363458266501634, guid: c7720e8e55583d84db21d984377f81ce, type: 3}
   - {fileID: 1097637023488730712, guid: 52236f77ea3c7fb459f514506d36f3cb, type: 3}
@@ -1285,11 +1286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2881867874471060073, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2881867874471060073, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.69
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2881867874471060073, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_LocalPosition.z
