@@ -74,6 +74,13 @@ public class ManagerScript : MonoBehaviour
         {
             SceneManager.LoadScene("StartMenu");
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _strokeCount = 0;
+            _currCourse.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            _currCourse.GetComponent<Rigidbody2D>().transform.position = Vector3.zero;
+            _currCourse.GetComponent<Rigidbody2D>().transform.rotation = Quaternion.identity;
+        }
     }
 
     public void addStroke()
