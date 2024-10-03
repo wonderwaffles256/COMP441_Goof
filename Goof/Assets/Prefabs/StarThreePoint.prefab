@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6864832944091378835}
   - component: {fileID: 4076285645521518920}
   - component: {fileID: 8384763599675643859}
+  - component: {fileID: 5779246560960767621}
   m_Layer: 0
   m_Name: StarThreePoint
   m_TagString: Untagged
@@ -199,3 +200,30 @@ PolygonCollider2D:
       - {x: -1.51, y: -1.12}
       - {x: -1.43, y: -1.09}
   m_UseDelaunayMesh: 0
+--- !u!50 &5779246560960767621
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851078877628563634}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

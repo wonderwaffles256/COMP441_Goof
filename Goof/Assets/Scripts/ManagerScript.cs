@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using Unity.PlasticSCM.Editor.WebApi;
+using UnityEngine.SceneManagement;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -67,6 +69,11 @@ public class ManagerScript : MonoBehaviour
             _hitHole = false;
         }
         strokeCountText.text = "Stroke: " + _strokeCount.ToString();
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("StartMenu");
+        }
     }
 
     public void addStroke()

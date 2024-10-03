@@ -17,9 +17,13 @@ public class StartMenuScript : MonoBehaviour
         
     }
 
-    public void OnClick()
+    public void OnClickStart()
     {
-        Debug.Log("Detected Click");
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void OnClickQuit()
+    {
+        Application.Quit();
     }
 }
