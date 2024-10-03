@@ -958,7 +958,7 @@ MonoBehaviour:
   parText: {fileID: 207590241}
   continueText: {fileID: 1449485392}
   coursePrefabs:
-  - {fileID: 6721635636588554533, guid: dbef62ed330e6bd40a6055100afabe08, type: 3}
+  - {fileID: 8183006589032628288, guid: e330926129cffae49b6915ea135644ea, type: 3}
   - {fileID: 4687063288451161880, guid: 4a23376404c01274a8e5d2b7db8222d7, type: 3}
   - {fileID: 6936363458266501634, guid: c7720e8e55583d84db21d984377f81ce, type: 3}
   - {fileID: 1097637023488730712, guid: 52236f77ea3c7fb459f514506d36f3cb, type: 3}
