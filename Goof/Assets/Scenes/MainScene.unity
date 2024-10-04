@@ -1345,6 +1345,13 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 2
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 3342399190322977756, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> c05ef836594e1a55cc91292d90f54e03a7eb9d50
     - target: {fileID: 7877907012732957949, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_Enabled
       value: 1
