@@ -1336,6 +1336,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3342399190322977756, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342399190322977756, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7877907012732957949, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_Enabled
       value: 1
