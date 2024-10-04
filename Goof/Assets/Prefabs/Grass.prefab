@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5126969812482011432}
   - component: {fileID: 714795038095528097}
   - component: {fileID: 3038306497518058723}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Grass
   m_TagString: Grass
   m_Icon: {fileID: 0}
@@ -97,10 +97,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
