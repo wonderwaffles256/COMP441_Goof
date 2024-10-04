@@ -8,6 +8,8 @@ TagManager:
   - Ball
   - Arrow
   - Course
+  - Water
+  - Grass
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ball Layer
+    uniqueID: 306278539
     locked: 0

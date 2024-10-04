@@ -959,10 +959,15 @@ MonoBehaviour:
   parText: {fileID: 207590241}
   continueText: {fileID: 1449485392}
   coursePrefabs:
-  - {fileID: 6721635636588554533, guid: dbef62ed330e6bd40a6055100afabe08, type: 3}
+  - {fileID: 8449458985260227268, guid: 10f8dbbedbc2e4949af8e7d5486b7fe6, type: 3}
   - {fileID: 4687063288451161880, guid: 4a23376404c01274a8e5d2b7db8222d7, type: 3}
   - {fileID: 6936363458266501634, guid: c7720e8e55583d84db21d984377f81ce, type: 3}
   - {fileID: 1097637023488730712, guid: 52236f77ea3c7fb459f514506d36f3cb, type: 3}
+  - {fileID: 8183006589032628288, guid: e330926129cffae49b6915ea135644ea, type: 3}
+  - {fileID: 6721635636588554533, guid: dbef62ed330e6bd40a6055100afabe08, type: 3}
+  - {fileID: 4984410492548047347, guid: a4ea594c257ee9844b4df545ac4cf3bc, type: 3}
+  - {fileID: 899262070655645502, guid: cef3739e44857f4479d2537c82001189, type: 3}
+  - {fileID: 7900065867255364078, guid: 8baf1a93b17a99e4e9d3ba813401b988, type: 3}
   winMessages:
   - Hole In One!!!
   - Albatross
@@ -1335,6 +1340,10 @@ PrefabInstance:
     - target: {fileID: 3342399190322977756, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342399190322977756, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7877907012732957949, guid: 9f6b514b6e3495b4cac46fd54998c50a, type: 3}
       propertyPath: m_Enabled
