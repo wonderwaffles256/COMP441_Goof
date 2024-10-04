@@ -56,4 +56,23 @@ public class CourseScript : MonoBehaviour
         }
         //_rbody.AddForce(testspeed, ForceMode2D.Impulse);
     }
+    public void WaterCourse()
+    {
+        _rbody.velocity = Vector3.zero;
+        _rbody.transform.position = Vector3.zero;
+        _rbody.transform.rotation = Quaternion.identity;
+    }
+    public void InGrass(bool grass)
+    {
+        if (grass)
+        {
+            _rbody.angularDrag = 3;
+            _rbody.drag = 3;
+        }
+        else
+        {
+            _rbody.angularDrag = 1;
+            _rbody.drag = 1;
+        }
+    }
 }

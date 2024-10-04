@@ -152,8 +152,8 @@ public class ManagerScript : MonoBehaviour
         }
         winMessageText.text = _winMessage;
     }
-    public Rigidbody2D getCurrentCourseRbody()
+    public CourseScript getCurrentCourseScript()
     {
-        return _currCourse.GetComponent<Rigidbody2D>();
+        return _currCourseScript;
     }
 }

@@ -105,18 +105,15 @@ public class BallScript : MonoBehaviour
         if (collision.tag == "Water")
         {
             Debug.Log("The Ball Sunk");
-            Rigidbody2D _currRbody = _manager.getCurrentCourseRbody();
-            _currRbody.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            _currRbody.GetComponent<Rigidbody2D>().transform.position = Vector3.zero;
-            _currRbody.GetComponent<Rigidbody2D>().transform.rotation = Quaternion.identity;
+            CourseScript _currCourseScript = _manager.getCurrentCourseScript();
+            _currCourseScript.WaterCourse();
             _manager.addStroke();
         }
         if (collision.tag == "Grass")
         {
             Debug.Log("The Ball is in the fields.");
-            Rigidbody2D _currRbody = _manager.getCurrentCourseRbody();
-            _currRbody.drag = 2;
-            _currRbody.angularDrag = 2;
+            CourseScript _currCourseScript = _manager.getCurrentCourseScript();
+            _currCourseScript.InGrass(true);
 
         }
         Debug.Log("Detected Trigger");
@@ -127,9 +124,8 @@ public class BallScript : MonoBehaviour
         if (collision.tag == "Grass")
         {
             Debug.Log("The Ball has left the fields.");
-            Rigidbody2D _currRbody = _manager.getCurrentCourseRbody();
-            _currRbody.drag = 1;
-            _currRbody.angularDrag = 1;
+            CourseScript _currCourseScript = _manager.getCurrentCourseScript();
+            _currCourseScript.InGrass(false);
 
         }
     }
